@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Capisco!</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+{% load static %}
+<div class="container">
+    <form method="POST" action="">
+    <h1>Capisco!</h1>
+    <h4><i>- käännetään sinun cooleimmat ajatukset usealle kielelle -</i></h4>
+    <div class="row">
+        <div class="col-4 offset-2">
+            <p>Valitse kieli</p>
+            {% for item in form.fkieliselect %}
+                <div class="radiolist" >
+                    {% csrf_token %}
+                    {{ item }}
+                </div>
+            {% endfor %}
+        </div>
+        <div class="col-4">
+            <p>Valitse kieli</p>
+                {% for item in form.tkieliselect %}
+                    <div class="radiolist">
+                        {% csrf_token %}
+                        {{ item }}
+                    </div>
+                {% endfor %}
+        </div>
+    </div>
+    <hr>
+    <div>
+            {% csrf_token %}
+            {{ form.kirjoita }}<br>
+            <br>
+            <input type="submit"  value="Käännä" class="btn btn-outline-info btn-sm"><br>
+    </div>
+    <br>
+    <div class="card">
+        <div class="card-body">{{ translation }}</div>
+    </div>
+    <br>
+    </form>
+</div>
+<img src="{% static "images/lippujalippuja.png"%}" class="img-responsive rounded mx-auto d-block" style="height:300px">
+</body>
+</html>
