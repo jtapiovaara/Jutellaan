@@ -15,3 +15,8 @@ class KaantajaForm(forms.Form):
     tkieliselect = forms.CharField(label='Valitse kieli, jolle käännetään',
                                    widget=forms.RadioSelect(choices=tchoice),
                                    required=True)
+
+
+class JoinForm(forms.Form):
+    email = forms.EmailField()
+    name = forms.CharField(max_length=120)

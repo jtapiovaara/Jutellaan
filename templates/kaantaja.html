@@ -1,34 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Capisco!</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <title>Capisco!</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
+<style>
+    p.a {
+  text-transform: uppercase;
+}
+</style>
 <body>
 {% load static %}
 <div class="container">
+{#<button type="button" class="btn btn-info btn-sm">GET</button>#}
     <form method="POST" action="">
     <h1>Capisco!</h1>
-    <h4><i>- käännetään sinun cooleimmat ajatukset usealle kielelle -</i></h4>
+    <h4><i>- tällä kääntyy cooleimmat ajatukset -</i></h4>
     <div class="row">
         <div class="col-4 offset-2">
-            <p>Valitse kieli</p>
+            <p class="fkieliotsikko a">{{ fkieliotsikko}}</p>
             {% for item in form.fkieliselect %}
-                <div class="radiolist" >
+                <div class="radiolist_f" id="fkieliSelected">
                     {% csrf_token %}
                     {{ item }}
                 </div>
             {% endfor %}
         </div>
         <div class="col-4">
-            <p>Valitse kieli</p>
+            <p class="tkieliotsikko a">{{ tkieliotsikko }}</p>
                 {% for item in form.tkieliselect %}
-                    <div class="radiolist">
+                    <div class="radiolist_t" id="tkieliSelected">
                         {% csrf_token %}
                         {{ item }}
                     </div>
@@ -49,6 +55,9 @@
     <br>
     </form>
 </div>
+<div>
 <img src="{% static "images/lippujalippuja.png"%}" class="img-responsive rounded mx-auto d-block" style="height:300px">
+</div>
+<script src="{% static 'js/cool.js' %}"></script>
 </body>
 </html>
